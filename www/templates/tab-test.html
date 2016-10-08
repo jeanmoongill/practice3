@@ -1,0 +1,15 @@
+<ion-view title="TestPage">
+<ion-content class="padding">
+	  <p>I am Page 2!</p>
+	  <ion-list>
+			<ion-item class="item-avatar" ng-repeat="item in users">
+				<!--<img src="{{item.user.picture.thumbnail}} " />-->
+				<!--<h2>{{item.user.name.first}} {{item.user.name.last}}</h2>-->
+				<img src="{{ item.picture.thumbnail }}" />
+        <h2>{{ item.name.first }}{{ item.name.last }}</h2>
+        <p>{{ item.location.city }}  {{ item.phone }}</p>
+
+			</ion-item>
+		</ion-list>
+</ion-content>
+</ion-view>
