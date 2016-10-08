@@ -32,3 +32,8 @@ angular.module('starter.controllers', [])
     enableFriends: true
   };
 });
+
+
+angle.model('MainCtrl', function () {
+  console.log("Hello this is test");
+})
