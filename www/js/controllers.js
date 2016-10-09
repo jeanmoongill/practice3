@@ -2,7 +2,18 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {})
 
-.controller('MainCtrl', function ($scope) {})
+.controller('MainCtrl', function ($scope, $location, $ionicHistory) {
+  $scope.login = function (password) {
+    console.log("ログインボタン押下");
+    window.localStorage.setItem("password", password);
+
+    $ionicHistory.nextViewOptions({
+      disableAnimate: true,
+      disableBack:true
+    });
+    $location.path('/tab/account');
+  }
+})
 
 .controller('TestCtrl', function ($scope, userService) {
   userService.getUsers().then(function (users) {
