@@ -2,11 +2,20 @@ angular.module('starter.services', [])
 
 
 .factory('userService', function ($http) {
+
+  var users = [];
+
   return {
     getUsers: function () {
       return $http.get('https://randomuser.me/api/?results=10').then(function (response) {
+        users = response.data.results;
         return response.data.results;
-      })
+      });
+    },
+
+    getUser:function (index) {
+      console.log("user is "+users[index]);
+      return users[index];
     }
   }
 })

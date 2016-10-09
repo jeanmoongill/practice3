@@ -2,6 +2,8 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {})
 
+.controller('MainCtrl', function ($scope) {})
+
 .controller('TestCtrl', function ($scope, userService) {
   userService.getUsers().then(function (users) {
     $scope.users = users;
@@ -27,13 +29,15 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
+.controller('UserListCtrl', function ($scope, $stateParams, userService) {
+  var index = $stateParams.index;
+  console.log("index is "+ index);
+  $scope.userInfo = userService.getUser(index);
+  console.log("user info is"+$scope.userInfo);
+})
+
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
     enableFriends: true
   };
 });
-
-
-angle.model('MainCtrl', function () {
-  console.log("Hello this is test");
-})

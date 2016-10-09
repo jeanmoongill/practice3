@@ -31,21 +31,41 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // Each state's controller can be found in controllers.js
   $stateProvider
 
+    // .state('main', {
+    //   url: '/main',
+    //   views: {
+    //     'main':{
+    //       templateUrl:'templates/main.html',
+    //       controller:'MainCtrl'
+    //     }
+    //   }
+    // })
+
   // setup an abstract state for the tabs directive
-    .state('tab', {
+   .state('tab', {
     url: '/tab',
     abstract: true,
-    templateUrl: 'templates/tabs.html'
+    templateUrl: 'templates/main.html'
   })
 
   // Each tab has its own nav history stack:
+  //
+  // .state('tab.dash', {
+  //   url: '/dash',
+  //   views: {
+  //     'tab-dash': {
+  //       templateUrl: 'templates/tab-dash.html',
+  //       controller: 'DashCtrl'
+  //     }
+  //   }
+  // })
 
-  .state('tab.dash', {
-    url: '/dash',
+  .state('tab.home', {
+    url: '/home',
     views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+      'main-view': {
+        templateUrl: 'templates/main-firstpage.html',
+        controller: 'MainCtrl'
       }
     }
   })
@@ -59,6 +79,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       }
     })
+
     .state('tab.chat-detail', {
       url: '/chats/:chatId',
       views: {
@@ -69,6 +90,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
 
+
   .state('tab.test', {
     url: '/test',
     views: {
@@ -77,6 +99,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         controller: 'TestCtrl'
       }
     }
+  })
+
+  .state('tab.getUser', {
+    url:"/userlist/:index",
+    views:{
+      'tab-test':{
+          templateUrl: 'templates/userDetails.html',
+          controller: "UserListCtrl"
+      }
+    }
+
   })
 
   .state('tab.account', {
@@ -90,57 +123,57 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/tab/home');
 
 });
 
-
-/**************************************************
-+	Module:		ionicApp.Main
-+	Exports:
-+		MainCtrl
-**************************************************/
-angular.module('ionicApp.Main', ['ionic'])
-
-.config(function ($stateProvider, $urlRouterProvider) {
-  $stateProvider
-    .state('main', {
-      url: "/main",
-      templateUrl:"templates/main.html",
-      controller:"MainCtrl"
-    });
-});
-
-
-/**************************************************
-+	Module:		ionicApp.Page2
-+	Exports:
-+		userService
-+		Page2Ctrl
-**************************************************/
-angular.module('ionicApp.Page2', ['ionic'])
-
-.config(function ($stateProvider, $urlRouterProvider) {
-  $stateProvider
-    .state('page2', {
-      url:"/page2",
-      templateUrl: "templates/page2.html",
-      controller:"Page2Ctrl"
-    })
-})
-
-.factory('userService', function($http) {
-	return {
-		getUsers: function(){
-			return $http.get('https://randomuser.me/api/?results=10').then(function(response){
-				return response.data.results;
-			});
-		}
-	}
-})
-
-.controller("Page2Ctrl",function($scope, userService){
-	userService.getUsers().then(function(users){
-		$scope.users = users;
-	});
-});
+//
+// /**************************************************
+// +	Module:		ionicApp.Main
+// +	Exports:
+// +		MainCtrl
+// **************************************************/
+// angular.module('ionicApp.Main', ['ionic'])
+//
+// .config(function ($stateProvider, $urlRouterProvider) {
+//   $stateProvider
+//     .state('main', {
+//       url: "/main",
+//       templateUrl:"templates/main.html",
+//       controller:"MainCtrl"
+//     });
+// });
+//
+//
+// /**************************************************
+// +	Module:		ionicApp.Page2
+// +	Exports:
+// +		userService
+// +		Page2Ctrl
+// **************************************************/
+// angular.module('ionicApp.UserList', ['ionic'])
+//
+// .config(function ($stateProvider, $urlRouterProvider) {
+//   $stateProvider
+//     .state('page2', {
+//       url:"/page2",
+//       templateUrl: "templates/page2.html",
+//       controller:"Page2Ctrl"
+//     })
+// })
+//
+// .factory('userService', function($http) {
+// 	return {
+// 		getUsers: function(){
+// 			return $http.get('https://randomuser.me/api/?results=10').then(function(response){
+// 				return response.data.results;
+// 			});
+// 		}
+// 	}
+// })
+//
+// .controller("Page2Ctrl",function($scope, userService){
+// 	userService.getUsers().then(function(users){
+// 		$scope.users = users;
+// 	});
+// });
