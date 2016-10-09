@@ -2,18 +2,21 @@
 <ion-content>
 	<div class="list card">
 		<div class="item item-avatar">
-			<!--<img src="{{item.picture.thumbnail}} " />-->
+			<img src="{{ userInfo.picture.thumbnail }}">
 			<h2>{{ userInfo.name.first }}{{ userInfo.name.last }}</h2>
-			<!--<p>{{item.location.city}} {{item.password}}</p>-->
+      <p>{{ userInfo.location.city }}{{ userInfo.passwo }}</p>
+
 		</div>
-		<!--<div class="item item-icon-left">-->
-			<!--<i class="icon ion-email"></i>-->
-			<!--{{item.email}}-->
-		<!--</div>-->
-		<!--<div class="item item-icon-left">-->
-			<!--<i class="icon ion-ios-telephone"></i>-->
-			<!--{{item.phone}}-->
-		<!--</div>-->
+
+    <div class="item item-icon-left">
+      <i class="icon ion-email"></i>
+      {{ userInfo.email }}
+    </div>
+
+    <div class="item item-icon-left">
+      <i class="icon ion-ios-telephone"></i>
+      {{ userInfo.phone }}
+    </div>
 	</div>
 </ion-content>
 </ion-view>
