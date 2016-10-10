@@ -17,7 +17,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
     }
     if (window.StatusBar) {
-      // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
   });
@@ -31,16 +30,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // Each state's controller can be found in controllers.js
   $stateProvider
 
-    // .state('main', {
-    //   url: '/main',
-    //   views: {
-    //     'main':{
-    //       templateUrl:'templates/main.html',
-    //       controller:'MainCtrl'
-    //     }
-    //   }
-    // })
-
   // setup an abstract state for the tabs directive
    .state('tab', {
     url: '/tab',
@@ -48,17 +37,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     templateUrl: 'templates/main.html'
   })
 
-  // Each tab has its own nav history stack:
-  //
-  // .state('tab.dash', {
-  //   url: '/dash',
-  //   views: {
-  //     'tab-dash': {
-  //       templateUrl: 'templates/tab-dash.html',
-  //       controller: 'DashCtrl'
-  //     }
-  //   }
-  // })
 
   .state('tab.home', {
     url: '/home',
@@ -126,54 +104,3 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   $urlRouterProvider.otherwise('/tab/home');
 
 });
-
-//
-// /**************************************************
-// +	Module:		ionicApp.Main
-// +	Exports:
-// +		MainCtrl
-// **************************************************/
-// angular.module('ionicApp.Main', ['ionic'])
-//
-// .config(function ($stateProvider, $urlRouterProvider) {
-//   $stateProvider
-//     .state('main', {
-//       url: "/main",
-//       templateUrl:"templates/main.html",
-//       controller:"MainCtrl"
-//     });
-// });
-//
-//
-// /**************************************************
-// +	Module:		ionicApp.Page2
-// +	Exports:
-// +		userService
-// +		Page2Ctrl
-// **************************************************/
-// angular.module('ionicApp.UserList', ['ionic'])
-//
-// .config(function ($stateProvider, $urlRouterProvider) {
-//   $stateProvider
-//     .state('page2', {
-//       url:"/page2",
-//       templateUrl: "templates/page2.html",
-//       controller:"Page2Ctrl"
-//     })
-// })
-//
-// .factory('userService', function($http) {
-// 	return {
-// 		getUsers: function(){
-// 			return $http.get('https://randomuser.me/api/?results=10').then(function(response){
-// 				return response.data.results;
-// 			});
-// 		}
-// 	}
-// })
-//
-// .controller("Page2Ctrl",function($scope, userService){
-// 	userService.getUsers().then(function(users){
-// 		$scope.users = users;
-// 	});
-// });

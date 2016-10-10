@@ -1,9 +1,31 @@
 <ion-view view-title="Account">
-  <ion-content>
-    <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        Enable Friends
-    </ion-toggle>
-    </ion-list>
+  <ion-content class="padding">
+
+    <div class="item item-icon-left">
+      <i class="ion-social-usd"></i>
+      {{ rates.rates.GBP }}
+    </div>
+
+    <div class="item item-icon-left">
+      <i class="ion-social-usd"></i>
+      {{ rates.rates.USD }}
+    </div>
+
+    <div class="item item-balanced">
+      <label class="item item-input">
+        <i class="ion-social-usd-outline"></i>
+        <input type="number" placeholder="Input your cash" ng-model="cash">
+      </label>
+    </div>
+
+
+    <button ng-click="" class="button button-block button-positive">
+      計算
+    </button>
+
+    <div class="item item-icon-left">
+      {{calc(cash)}}
+    </div>
+
   </ion-content>
 </ion-view>

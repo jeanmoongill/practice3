@@ -12,7 +12,7 @@ angular.module('starter.controllers', [])
       disableAnimate: true,
       disableBack:true
     });
-    $location.path('/tab/account');
+    $location.path('/tab/test');
   }
 })
 
@@ -22,24 +22,6 @@ angular.module('starter.controllers', [])
   })
 })
 
-// .controller('ChatsCtrl', function($scope, Chats) {
-//   // With the new view caching in Ionic, Controllers are only called
-//   // when they are recreated or on app start, instead of every page change.
-//   // To listen for when this page is active (for example, to refresh data),
-//   // listen for the $ionicView.enter event:
-//   //
-//   //$scope.$on('$ionicView.enter', function(e) {
-//   //});
-//
-//   $scope.chats = Chats.all();
-//   $scope.remove = function(chat) {
-//     Chats.remove(chat);
-//   };
-// })
-//
-// .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-//   $scope.chat = Chats.get($stateParams.chatId);
-// })
 
 .controller('UserListCtrl', function ($scope, $stateParams, userService) {
   var index = $stateParams.index;
@@ -48,17 +30,28 @@ angular.module('starter.controllers', [])
   console.log("user info is"+$scope.userInfo);
 })
 
-.controller('AccountCtrl', function($scope, $location, $ionicHistory) {
+.controller('AccountCtrl', function($scope, $location, $ionicHistory, userService) {
 
-  console.log("password is:"+window.localStorage.getItem("password"));
-  if(window.localStorage.getItem("password") === "undefined" || window.localStorage.getItem("password") === null){
-    $ionicHistory.nextViewOptions({
-      disableAnimate: true,
-      disableBack:true
-    });
-    $location.path("/tab/home");
+  setInterval(function () {
+    userService.getChangeRate().then(function (data) {
+      $scope.rates = data;
+    })
+  }, 1000);
+
+
+  $scope.calc = function (cash) {
+
+    if(cash > 0){
+      return cash * 100;
+    }else{
+      return 0;
+    }
   }
-  // $scope.settings = {
-  //   enableFriends: false
-  // };
+
+
+  //
+  // userService.getChangeRate().then(function(data){
+  //   $scope.rates = data;
+  // })
+
 });
