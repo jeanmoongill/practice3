@@ -5,6 +5,7 @@ angular.module('starter.controllers', [])
 .controller('MainCtrl', function ($scope, $location, $ionicHistory) {
   $scope.login = function (password) {
     console.log("ログインボタン押下");
+    console.log("password in MianCtrl: " + password);
     window.localStorage.setItem("password", password);
 
     $ionicHistory.nextViewOptions({
@@ -21,24 +22,24 @@ angular.module('starter.controllers', [])
   })
 })
 
-.controller('ChatsCtrl', function($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };
-})
-
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
+// .controller('ChatsCtrl', function($scope, Chats) {
+//   // With the new view caching in Ionic, Controllers are only called
+//   // when they are recreated or on app start, instead of every page change.
+//   // To listen for when this page is active (for example, to refresh data),
+//   // listen for the $ionicView.enter event:
+//   //
+//   //$scope.$on('$ionicView.enter', function(e) {
+//   //});
+//
+//   $scope.chats = Chats.all();
+//   $scope.remove = function(chat) {
+//     Chats.remove(chat);
+//   };
+// })
+//
+// .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
+//   $scope.chat = Chats.get($stateParams.chatId);
+// })
 
 .controller('UserListCtrl', function ($scope, $stateParams, userService) {
   var index = $stateParams.index;
@@ -47,8 +48,17 @@ angular.module('starter.controllers', [])
   console.log("user info is"+$scope.userInfo);
 })
 
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
+.controller('AccountCtrl', function($scope, $location, $ionicHistory) {
+
+  console.log("password is:"+window.localStorage.getItem("password"));
+  if(window.localStorage.getItem("password") === "undefined" || window.localStorage.getItem("password") === null){
+    $ionicHistory.nextViewOptions({
+      disableAnimate: true,
+      disableBack:true
+    });
+    $location.path("/tab/home");
+  }
+  // $scope.settings = {
+  //   enableFriends: false
+  // };
 });
