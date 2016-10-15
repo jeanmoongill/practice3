@@ -17,17 +17,32 @@ angular.module('starter.controllers', [])
 })
 
 .controller('TestCtrl', function ($scope, userService) {
+
+  $scope.users = [];
+
   userService.getUsers().then(function (users) {
     $scope.users = users;
-  })
+  });
+
+  $scope.doRefresh = function() {
+
+    userService.getNewUser().then(function(user){
+
+      $scope.users = user.concat($scope.users);
+
+      $scope.$broadcast('scroll.refreshComplete');
+
+    });
+  };
+
 })
 
-
 .controller('UserListCtrl', function ($scope, $stateParams, userService) {
+
   var index = $stateParams.index;
-  console.log("index is "+ index);
+
   $scope.userInfo = userService.getUser(index);
-  console.log("user info is"+$scope.userInfo);
+
 })
 
 .controller('AccountCtrl', function($scope, $location, $ionicHistory, userService) {
@@ -47,11 +62,5 @@ angular.module('starter.controllers', [])
       return 0;
     }
   }
-
-
-  //
-  // userService.getChangeRate().then(function(data){
-  //   $scope.rates = data;
-  // })
 
 });

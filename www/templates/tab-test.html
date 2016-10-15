@@ -1,5 +1,18 @@
+
+
 <ion-view title="社員管理">
+
+
+
+<!-- add content -->
 <ion-content class="padding">
+
+	<!-- add reflash -->
+	<ion-refresher
+		  pulling-text="更新中..."
+		  on-refresh="doRefresh()">
+	</ion-refresher>
+
 	  <ion-list>
 			<ion-item class="item-avatar" ng-repeat="item in users" ui-sref="tab.getUser({index:$index})">
 				<img src="{{ item.picture.thumbnail }}" />
